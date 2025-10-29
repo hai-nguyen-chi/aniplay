@@ -4,8 +4,26 @@
 
 ### Users
 ```javascript
-{ _id: ObjectId, email: String, password: String, username: String, role: String, createdAt: Date, updatedAt: Date }
+{
+  _id: ObjectId,
+  email: String,
+  password: String,
+  username: String,
+  // permissions theo resource: bitmask action (VIEW, CREATE, UPDATE, DELETE)
+  // ví dụ: { anime: 1, rating: 1, comment: 3, "*": 15 }
+  permissions: { [resource: string]: Number },
+  createdAt: Date,
+  updatedAt: Date
+}
 ```
+
+#### Permission bitmask
+- VIEW = 1, CREATE = 2, UPDATE = 4, DELETE = 8
+- Có thể đặt mặc định toàn cục qua key `"*"` (wildcard), ví dụ 15 = full CRUD
+- Ví dụ user A:
+  - `permissions.anime = 1` (xem anime)
+  - `permissions.rating = 1` (xem rating)
+  - `permissions.comment = 3` (xem + tạo comment)
 
 ### Anime
 ```javascript

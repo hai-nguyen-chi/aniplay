@@ -8,8 +8,17 @@ Base URL: `http://localhost:3001`
 ## Auth
 - POST /auth/register
 - POST /auth/login
+  - Body: `{ email, password }`
+  - 200: `{ accessToken, refreshToken }`
 - POST /auth/refresh
+  - Body: `{ refreshToken }`
+  - 200: `{ accessToken, refreshToken }`
 - POST /auth/logout
+  - Header: `Authorization: Bearer <accessToken>`
+  - 200: `{ success: true }`
+- GET /auth/me
+  - Header: `Authorization: Bearer <accessToken>`
+  - 200: `{ sub, email, username, permissions }`
 
 ## Anime
 - GET /anime (q, genre, status, page, limit, sort)

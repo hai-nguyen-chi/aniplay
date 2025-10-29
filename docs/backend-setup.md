@@ -15,8 +15,9 @@ npm install -D @types/bcryptjs
 ```env
 MONGODB_URI=mongodb://localhost:27017/aniplay_db
 JWT_SECRET=supersecret
-JWT_EXPIRES_IN=1d
-JWT_REFRESH_EXPIRES_IN=7d
+JWT_EXPIRES_IN=15m
+REFRESH_JWT_SECRET=supersecret_refresh
+REFRESH_JWT_EXPIRES_IN=7d
 PORT=3001
 ```
 
@@ -53,7 +54,7 @@ bootstrap();
 ```
 
 ## Bước tiếp theo
-- Thêm Auth (module/service/controller, JwtStrategy, JwtAuthGuard)
+- Auth đã bao gồm: login, refresh, logout, me; JwtStrategy load permissions từ DB mỗi request
 - Thêm Anime/Episode và các module còn lại
 - Xem thêm trong `backend-contracts.md`, `backend-models.md`, `backend-security.md`
 
